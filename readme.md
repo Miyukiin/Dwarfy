@@ -32,7 +32,7 @@ This project is originally intended to run with Apache2, PHP 7.4, MySQL, CodeIgn
 	```sh 
 	<IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /dwarfy/ 
+    RewriteBase / 
 
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
