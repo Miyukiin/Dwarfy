@@ -32,7 +32,7 @@ This project is originally intended to run with Apache2, PHP 7.4, MySQL, CodeIgn
 	```sh 
 	<IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase / 
+    RewriteBase /dwarfy/ 
 
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
@@ -48,9 +48,9 @@ This project is originally intended to run with Apache2, PHP 7.4, MySQL, CodeIgn
 	```sh 
 	<VirtualHost *:80>
         ServerName dwarfy.local
-        DocumentRoot /var/www/dwarfy
+        DocumentRoot /var/www/html
 
-        <Directory /var/www/dwarfy>
+        <Directory /var/www/html>
             AllowOverride All
             Require all granted
         </Directory>
@@ -59,32 +59,24 @@ This project is originally intended to run with Apache2, PHP 7.4, MySQL, CodeIgn
         CustomLog ${APACHE_LOG_DIR}/dwarfy_access.log combined
     </VirtualHost>
 	```
-7. Add an entry for `dwarfy.local` in `etc/hosts` or `C:\Windows\System32\drivers\etc\hosts` depending on your operating system.
-    ```sh
-    127.0.0.1 dwarfy.local
-    ```
-8. Use our configuration.
+7. Use our configuration.
     ```sh
     sudo a2ensite dwarfy.conf
     sudo systemctl reload apache2
     ```
-9. Run `a2enmod` rewrite to allow our .htaccess file to work.
+8. Run `a2enmod` rewrite to allow our .htaccess file to work.
 	```sh 
 	sudo a2enmod rewrite
 	sudo systemctl restart apache2
 	```
-10. Modify `etc/apache2/ports.conf` to allow WSL2 Apache to listen not only to Linux VM's internal IP, but all network interfaces.
-    ```sh
-    sudo nano ports.conf # Change Listen 80 to *:80
-    ```
-11. Run the project either via PHP's built-in web server or Apache.
+9. Run the project either via PHP's built-in web server or Apache.
 	```sh
 	# If running PHP's built-in web server
-	php -S localhost:3000
+	php -S localhost:3000 # In Project Directory
 	```
-12. Visit the project's URL in the browser.
+10. Visit the project's URL in the browser.
 	```sh 
 	PHP: http://localhost:3000/
-	Apache: http://dwarfy.local
+	Apache: http://localhost/dwarfy/
 	```
  
