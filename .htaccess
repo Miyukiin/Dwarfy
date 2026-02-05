@@ -1,0 +1,13 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase / 
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php/$1 [L]
+</IfModule>
+
+
+# RewriteEngine On: Enables the runtime rewriting engine.#
+# RewriteCond !-f and !-d: Tells Apache that if the requested URL isn't an actual file or folder on the server, it should pass the request to index.php.
+# RewriteRule: Redirects everything to index.php while keeping the URI segments intact.
